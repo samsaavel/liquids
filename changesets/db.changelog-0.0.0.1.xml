@@ -21,6 +21,9 @@
             <column name="ID_ROL" type="INT">
                 <constraints nullable="true" primaryKey="false" unique="false"/>
             </column>
+            <column name="ID_ADDRESS" type="INT">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -48,6 +51,7 @@
             </column>
         </createTable>
     </changeSet>
+
     <changeSet author="authorGonzalez" id="changelog-1.3">
         <createTable tableName="ADDRESS">
             <column name="ID" type="INT">
@@ -56,13 +60,22 @@
             <column name="STREET" type="VARCHAR(50)">
                 <constraints nullable="true" primaryKey="false" unique="false"/>
             </column>
+            <column name="CITY" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="STATE" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="COUNTRY" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
         </createTable>
     </changeSet>
 
     <changeSet author="authorGonzalez" id="changelog-1.4">
     <addForeignKeyConstraint baseColumnNames="ID_ROL"
             baseTableName="USER"
-            constraintName="fk_user_rol"
+            constraintName="FK_USER_ROL"
             referencedColumnNames="ID"
             referencedTableName="ROL"/>
     </changeSet>
@@ -74,4 +87,13 @@
             referencedColumnNames="ID"
             referencedTableName="PERMITS"/>
     </changeSet>
+
+    <changeSet author="authorGonzalez" id="changelog-1.6">
+    <addForeignKeyConstraint baseColumnNames="ID_ADDRESS"
+            baseTableName="USER"
+            constraintName="FK_USER_ADDRESS"
+            referencedColumnNames="ID"
+            referencedTableName="ADDRESS"/>
+    </changeSet>
+    
 </databaseChangeLog>
