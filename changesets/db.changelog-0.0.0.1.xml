@@ -89,4 +89,20 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet author="authorGonzalez" id="changelog-1.4">
+    <addForeignKeyConstraint baseColumnNames="ID_ROL"
+            baseTableName="USER_PERMISSIONS"
+            constraintName="FK_USER_PERMISSIONS_ROL"
+            referencedColumnNames="ID"
+            referencedTableName="ROL"/>
+    </changeSet>
+
+    <changeSet author="authorGonzalez" id="changelog-1.4">
+    <addForeignKeyConstraint baseColumnNames="ID_USER"
+            baseTableName="USER_PERMISSIONS"
+            constraintName="FK_USER_PERMISSIONS_USER"
+            referencedColumnNames="ID"
+            referencedTableName="USER"/>
+    </changeSet>
 </databaseChangeLog>
