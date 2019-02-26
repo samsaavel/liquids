@@ -90,7 +90,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet author="authorGonzalez" id="changelog-1.4">
+    <changeSet author="authorGonzalez" id="changelog-1.6">
     <addForeignKeyConstraint baseColumnNames="ID_ROL"
             baseTableName="USER_PERMISSIONS"
             constraintName="FK_USER_PERMISSIONS_ROL"
@@ -98,7 +98,7 @@
             referencedTableName="ROL"/>
     </changeSet>
 
-    <changeSet author="authorGonzalez" id="changelog-1.4">
+    <changeSet author="authorGonzalez" id="changelog-1.7">
     <addForeignKeyConstraint baseColumnNames="ID_USER"
             baseTableName="USER_PERMISSIONS"
             constraintName="FK_USER_PERMISSIONS_USER"
