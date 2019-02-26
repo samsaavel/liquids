@@ -4,6 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
     <changeSet author="authorGonzalez" id="changelog-1.0">
         <createTable tableName="USER">
             <column name="ID" type="INT">
@@ -18,7 +19,13 @@
             <column name="AGE" type="INT">
                 <constraints nullable="true" primaryKey="false" unique="false"/>
             </column>
-            <column name="ID_ROL" type="INT">
+            <column name="USERNAME" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="ID_ADDRESS" type="INT">
                 <constraints nullable="true" primaryKey="false" unique="false"/>
             </column>
         </createTable>
@@ -32,22 +39,12 @@
             <column name="ROL" type="VARCHAR(20)">
                 <constraints nullable="true" primaryKey="false" unique="true"/>
             </column>
-            <column name="ID_PERMITS" type="INT">
+            <column name="PERMISSIONS" type="VARCHAR(255)">
                 <constraints nullable="true" primaryKey="false" unique="true"/>
             </column>
         </createTable>
     </changeSet>
     
-    <changeSet author="authorGonzalez" id="changelog-1.2">
-        <createTable tableName="PERMITS">
-            <column name="ID" type="INT">
-                <constraints nullable="true" primaryKey="true" unique="false"/>
-            </column>
-            <column name="PERMITS" type="VARCHAR(15)">
-                <constraints nullable="true" primaryKey="false" unique="false"/>
-            </column>
-        </createTable>
-    </changeSet>
     <changeSet author="authorGonzalez" id="changelog-1.3">
         <createTable tableName="ADDRESS">
             <column name="ID" type="INT">
@@ -56,22 +53,40 @@
             <column name="STREET" type="VARCHAR(50)">
                 <constraints nullable="true" primaryKey="false" unique="false"/>
             </column>
+            <column name="NUMBER" type="VARCHAR(5)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="CITY" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="STATE" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="COUNTRY" type="VARCHAR(50)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
+            <column name="CP" type="VARCHAR(10)">
+                <constraints nullable="true" primaryKey="false" unique="false"/>
+            </column>
         </createTable>
     </changeSet>
 
     <changeSet author="authorGonzalez" id="changelog-1.4">
-    <addForeignKeyConstraint baseColumnNames="ID_ROL"
+    <addForeignKeyConstraint baseColumnNames="ID_ADDRESS"
             baseTableName="USER"
-            constraintName="fk_user_rol"
+            constraintName="FK_USER_ADDRESS"
             referencedColumnNames="ID"
-            referencedTableName="ROL"/>
+            referencedTableName="ADDRESS"/>
     </changeSet>
 
     <changeSet author="authorGonzalez" id="changelog-1.5">
-    <addForeignKeyConstraint baseColumnNames="ID_PERMITS"
-            baseTableName="ROL"
-            constraintName="FK_ROL_PERMITS"
-            referencedColumnNames="ID"
-            referencedTableName="PERMITS"/>
+        <createTable tableName="USER_PERMISSIONS">
+            <column name="ID_ROL" type="INT">
+                <constraints nullable="true" primaryKey="false" unique="true"/>
+            </column>
+            <column name="ID_USER" type="INT">
+                <constraints nullable="true" primaryKey="false" unique="true"/>
+            </column>
+        </createTable>
     </changeSet>
 </databaseChangeLog>
